@@ -9,7 +9,7 @@ function User({ user, onRemove, onToggle }) {
                     color: active ? 'green' : 'black',
                     cursor: 'pointer'
                 }}
-                onClick={() => onToggle}
+                onClick={() => onToggle(id)}
             >
                 {username}
             </b>
@@ -20,7 +20,7 @@ function User({ user, onRemove, onToggle }) {
     )
 }
 
-function UserList({ users, onRemove }) {
+function UserList({ users, onRemove, onToggle }) {
     return (
         <div>
             {
