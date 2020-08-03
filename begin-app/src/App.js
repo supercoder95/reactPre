@@ -45,6 +45,20 @@ function reducer(state, action) {
           [action.name]: action.value
         }
       };
+      case 'CREATE_USER':
+        return {
+          inputs: initalState.inputs,
+          user: state.users.concat(action.user),
+        }
+      case 'TOGGLE_USER' :
+        return {
+          ...state,
+          users: state.user.map(user =>
+            user.id === action.id
+            ? { ...user, active: !user.active}
+            : user
+            )
+        }
     default:
       throw new Error('Unhandled action')
   }
@@ -52,6 +66,7 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initalState);
+  const nextId =  useRef(4);
   const { users } = state;
   const { username, email } = state.inputs;
 
@@ -64,14 +79,25 @@ function App() {
     })
   }, [])
 
-  const onCreate = useCallback(() => { }, [])
-  dispatch({})
+  const onCreate = useCallback(() => {
+    dispatch({
+      type: 'CREATE_USER',
+      user: {
+        id: nextId.current,
+        username,
+        email,
+      }
+    });
+    nextId.current += 1;
+  }, [username, email]);
+ 
   return (
     <>
       <CreateUser
         username={username}
         email={email}
         onChange={onChange}
+        onCreate={onCreate}
       />
       <UserList
         users={users}
