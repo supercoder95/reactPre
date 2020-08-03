@@ -17,7 +17,9 @@ const User = React.memo(function User({ user, onRemove, onToggle }) {
                     color: active ? 'green' : 'black',
                     cursor: 'pointer'
                 }}
-                onClick={() => onToggle(id)}
+                onClick={() =>
+                    onToggle(id)
+                }
             >
                 {username}
             </b>
@@ -33,7 +35,7 @@ function UserList({ users, onRemove, onToggle }) {
         <div>
             {
                 users.map(
-                    (user, index) => (
+                    (user) => (
                         <User
                             user={user}
                             key={user.id}

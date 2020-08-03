@@ -17,7 +17,7 @@ const initalState = {
       {
         id: 1,
         username: 'supercoder',
-        useremail: 'supercoder@kakao.com',
+        email: 'supercoder@kakao.com',
         active: true,
       },
       {
@@ -45,20 +45,26 @@ function reducer(state, action) {
           [action.name]: action.value
         }
       };
-      case 'CREATE_USER':
-        return {
-          inputs: initalState.inputs,
-          user: state.users.concat(action.user),
-        }
-      case 'TOGGLE_USER' :
-        return {
-          ...state,
-          users: state.user.map(user =>
-            user.id === action.id
-            ? { ...user, active: !user.active}
+    case 'CREATE_USER':
+      return {
+        inputs: initalState.inputs,
+        users: state.users.concat(action.user),
+      };
+    case 'TOGGLE_USER':
+      return {
+        ...state,
+        users: state.users.map(user =>
+          user.id === action.id
+            ? { ...user, active: !user.active }
             : user
-            )
-        }
+        )
+      };
+    case 'REMOVE_USER':
+      return {
+        ...state,
+        users: state.users.filter(user => user.id !== action.id)
+      }
+
     default:
       throw new Error('Unhandled action')
   }
@@ -66,7 +72,7 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initalState);
-  const nextId =  useRef(4);
+  const nextId = useRef(4);
   const { users } = state;
   const { username, email } = state.inputs;
 
@@ -90,7 +96,26 @@ function App() {
     });
     nextId.current += 1;
   }, [username, email]);
- 
+
+
+
+  const onToggle = useCallback(id => {
+    dispatch({
+      type: 'TOGGLE_USER',
+      id,
+    });
+  }, [])
+
+  const onRemove = useCallback(id => {
+    dispatch({
+      type: 'REMOVE_USER',
+      id,
+    })
+  }, [])
+
+  const count = useMemo(() => counActiveUsers(users), [users])
+
+
   return (
     <>
       <CreateUser
@@ -101,8 +126,10 @@ function App() {
       />
       <UserList
         users={users}
+        onToggle={onToggle}
+        onRemove={onRemove}
       />
-      <div>활성 사용자 수: 0</div>
+      <div>활성 사용자 수: {count}</div>
     </>
   );
 }
