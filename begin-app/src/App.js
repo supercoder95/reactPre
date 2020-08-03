@@ -12,7 +12,7 @@ const initalState = {
     username: '',
     email: '',
   },
-  users: 
+  users:
     [
       {
         id: 1,
@@ -36,7 +36,18 @@ const initalState = {
 }
 
 function reducer(state, action) {
-  return state;
+  switch (action.type) {
+    case 'CHANGE_INPUT':
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.name]: action.value
+        }
+      };
+    default:
+      throw new Error('Unhandled action')
+  }
 }
 
 function App() {
@@ -53,15 +64,17 @@ function App() {
     })
   }, [])
 
+  const onCreate = useCallback(() => { }, [])
+  dispatch({})
   return (
     <>
       <CreateUser
-        username = {username}
-        email = {email}
-        onChange = {onChange}
+        username={username}
+        email={email}
+        onChange={onChange}
       />
       <UserList
-        users = {users}
+        users={users}
       />
       <div>활성 사용자 수: 0</div>
     </>
