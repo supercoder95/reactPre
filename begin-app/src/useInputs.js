@@ -12,4 +12,4 @@ function useInputs(initialFrom) {
     return [form, onChange, reset];
 };
 
-export defalut useInputs;
+export default useInputs;
