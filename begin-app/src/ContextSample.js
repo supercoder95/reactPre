@@ -1,19 +1,28 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-function Child({ text }) {
+const MyContext = createContext('defalutValue');
+
+function Child() {
+    const text = useContext(MyContext);
     return <div> 안녕하세요 {text}</div>
 }
 
-function Parent({ text }) {
-    return <Child text={text} />
+function Parent() {
+    return <Child />
 }
 
-function GrandParent({ text }) {
-    return <Parent text={text} />
+function GrandParent() {
+    return <Parent />
 }
 
 function ContextSample() {
-    return <GrandParent text="GOOD" />
+    const [value, setValue] = useState(true);
+    return (
+        <MyContext.Provider value={value ? 'GOOD' : 'BAD'}>
+            <GrandParent />
+            <button onClick={() => setValue(!value)} >CLICK ME</button>
+        </MyContext.Provider >
+    )
 }
 
 export default ContextSample;
