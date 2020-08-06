@@ -4,6 +4,9 @@ import CreateUser from './CreateUser';
 import useInputs from './useInputs';
 import produce from 'immer';
 
+
+window.produce = produce;
+
 function counActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
   return users.filter(user => user.active).length;
@@ -38,24 +41,37 @@ function reducer(state, action) {
   switch (action.type) {
 
     case 'CREATE_USER':
-      return {
-        inputs: initalState.inputs,
-        users: state.users.concat(action.user),
-      };
+      return produce(state, draft => {
+        draft.users.push(action.user);
+      }) 
+       
+      //   inputs: initalState.inputs,
+      //   users: state.users.concat(action.user),
+      // };
     case 'TOGGLE_USER':
-      return {
-        ...state,
-        users: state.users.map(user =>
-          user.id === action.id
-            ? { ...user, active: !user.active }
-            : user
-        )
-      };
+      // immer ver.
+    return produce(state, draft => {
+      const user = draft.users.find(user => user.id === action.id);
+      user.active = !user.active;
+    })
+      // return {
+      //   ...state,
+      //   users: state.users.map(user =>
+      //     user.id === action.id
+      //       ? { ...user, active: !user.active }
+      //       : user
+      //   )
+      // };
     case 'REMOVE_USER':
-      return {
-        ...state,
-        users: state.users.filter(user => user.id !== action.id)
-      }
+
+    return produce(state, draft => {
+      const index = draft.users.findIndex(user => user.id === action.id);
+      draft.users.splice(index, 1);
+    })
+      // return {
+      //   ...state,
+      //   users: state.users.filter(user => user.id !== action.id)
+      // }
 
     default:
       throw new Error('Unhandled action')
