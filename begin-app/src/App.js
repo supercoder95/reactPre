@@ -2,6 +2,7 @@ import React, { useRef, useReducer, useMemo, useCallback, createContext } from '
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 import useInputs from './useInputs';
+import produce from 'immer';
 
 function counActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
