@@ -6,15 +6,16 @@ import Counter from './Counter';
 import * as serviceWorker from './serviceWorker';
 import ContextSample from './ContextSample';
 
-// ReactDOM.render(<ContextSample />, document.getElementById('root'));
+
+ReactDOM.render(<Counter />, document.getElementById('root'));
 
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
 // ReactDOM.render(
 //   <Counter />, document.getElementById('root')
