@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import User from './User';
+import ErrorBoundary from './ErrorBoundary';
 
 function App() {
   const user = {
@@ -9,10 +9,9 @@ function App() {
   };
 
   return (
-    <div>
+    <ErrorBoundary>
       <User />
-      <b>asdfasdfasdf</b>
-    </div>
+    </ErrorBoundary>
   );
 }
 
