@@ -28,6 +28,27 @@ function App() {
           Button
         </Button>
       </div>
+      <div className="buttons">
+        <Button size="large" fullWidth outline>
+          Button
+        </Button>
+        <Button color="gray" fullWidth>
+          Button
+        </Button>
+        <Button
+          color="pink"
+          fullWidth
+          size="small"
+          onClick={() => {
+            console.log("클릭되었다!!!!");
+          }}
+          onMouseMove={() => {
+            console.log("마우스가 지나갓따!!!!");
+          }}
+        >
+          Button
+        </Button>
+      </div>
     </div>
   );
 }
