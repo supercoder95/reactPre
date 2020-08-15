@@ -1,14 +1,32 @@
 import React from "react";
 import Button from "./components/Button";
-import './App.scss'
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
       <div className="buttons">
-        <Button size="large">LARGE</Button>
-        <Button>MEDIUM</Button>
-        <Button size="small">SMALL</Button>
+        <Button size="large">Button</Button>
+        <Button>Button</Button>
+        <Button size="small">Button</Button>
+      </div>
+      <div className="buttons">
+        <Button color="gray" size="large">
+          Button
+        </Button>
+        <Button color="gray">Button</Button>
+        <Button color="gray" size="small">
+          Button
+        </Button>
+      </div>
+      <div className="buttons">
+        <Button color="pink" size="large">
+          Button
+        </Button>
+        <Button color="pink">Button</Button>
+        <Button color="pink" size="small">
+          Button
+        </Button>
       </div>
     </div>
   );
