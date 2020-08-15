@@ -9,10 +9,23 @@ $blue: #228be6; //이건 주석이다.
   border-radius: 4px;
   cursor: pointer;
 
-  height: 2.25rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  font-size: 1rem;
+
+  &.large {
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+
+  &.medium {
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+
+  &.small {
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
 
   background: $blue;
   &:hover {
@@ -20,5 +33,9 @@ $blue: #228be6; //이건 주석이다.
   }
   &:active {
     background: darken($blue, 10%);
+  }
+
+  & + & {
+    margin-left: 1rem;
   }
 }

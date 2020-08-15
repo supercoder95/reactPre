@@ -5,10 +5,11 @@ function App() {
   return (
     <div className="App">
       <div className="buttons">
-        <Button>Button</Button>
+        <Button size="large">Large</Button>
+        <Button size="medium">medium</Button>
+        <Button size="small">small</Button>
       </div>
     </div>
   );
 }
-
 export default App;
