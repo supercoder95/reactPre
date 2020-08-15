@@ -1,9 +1,11 @@
-$blue: #228be6; //이건 주석이다.
+$blue: #228be6; 
 
 .Button {
   display: inline-flex;
   color: white;
   font-weight: bold;
+  align-items: center;
+  justify-content: center;
   outline: none;
   border: none;
   border-radius: 4px;
