@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import TodoTemplate from './Components/TodoTemplate';
 import TodoHead from './Components/TodoHead';
-import TodoList from './TodoList';
+import TodoList from './Components/TodoList';
 
 const GlobalStyle = createGlobalStyle`
  body{
