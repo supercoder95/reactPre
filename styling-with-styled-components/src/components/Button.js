@@ -36,7 +36,7 @@ const sizes = {
 const sizeStyles = css`
   /*크기*/
   ${({ size }) => css`
-    height: ${sizes[size].height}
+    height: ${sizes[size].height};
     font-size: ${sizes[size].fontSize};
   `}
 `;
