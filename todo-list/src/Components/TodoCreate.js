@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { MdAdd } from 'react-icons/md'
 
@@ -26,6 +26,7 @@ const CircleButton = styled.button`
     position: absolute;
     left: 50%;
     bottom: 0px;
+    /* 정확한 중앙 정렬 */
     transform: translate(-50%, 50% );
 
 
@@ -37,14 +38,66 @@ const CircleButton = styled.button`
     /* 테두리, 아웃라인 제거 */
     border: none;
     outline: none;
+    /* 애니메이션 */
+    transition: 0.125s all ease-in;
+    /* if open === true */
+    ${props => props.open && css`
+    background: #ff6b6;
+    &:hover {
+        background: #ff8787;
+    }
+    &:active {
+        background: #fa5252;
+    }    
+    transform: translate(-50%, 50% ) rotate(45deg);
+    `
+    }
+
+`;
+
+const InsertFromPositioner = styled.div`
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+`;
+
+const InsertFrom = styled.div`
+    background: #f8f9fa;
+    padding: 32px;
+    padding-bottom: 72px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-top: 1px solid #e9ecef;
+`;
+
+const InputComponent = styled.input`
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    /* padding 영역 벗어남 방지 */
+    box-sizing: border-box;
 `;
 
 function TodoCreate() {
-    return (
-        <div>
+    const [open, setOpen] = useState(false);
+    const onToggle = () => setOpen(!open);
 
-        </div>
-    )
+    return <>
+        {open && (
+            <InsertFromPositioner>
+                <InsertFrom>
+                    <InputComponent placeholder="할 일을 입력해주세요." autoFocus />
+                </InsertFrom>
+            </InsertFromPositioner>
+        )}
+        <CircleButton onClick={onToggle} open={open}>
+            <MdAdd />
+        </CircleButton>
+    </>
 }
 
 export default TodoCreate
