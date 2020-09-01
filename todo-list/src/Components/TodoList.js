@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import TodoItem from './TodoItem';
+import { useTodoState } from '../TodoContext';
 
 const TodoListBlock = styled.div`
     /*자신이 차지할 수 있는 영역 우선순위*/
